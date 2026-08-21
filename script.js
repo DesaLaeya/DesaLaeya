@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- Peta Desa ---------- */
   const pd = C.petaDesa;
   document.getElementById("petaBanjirImg").src = pd.kerawananBanjirThumb;
-  document.getElementById("petaDesaGmapFrame").src = pd.googleMapsEmbedSrc;
   document.getElementById("petaDownloadBtn").href = pd.kerawananBanjirFull;
   initPetaBanjirModal(pd.kerawananBanjirFull);
 

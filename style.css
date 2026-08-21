@@ -340,8 +340,8 @@ h2{ font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--color-primary-dark); }
 /* ==========================================================
    PETA DESA
    ========================================================== */
-.peta-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:28px; margin-top: 8px; }
-.peta-card{ display:flex; flex-direction:column; }
+.peta-grid{ display:flex; justify-content:center; margin-top: 8px; }
+.peta-card{ display:flex; flex-direction:column; width:100%; max-width:560px; }
 .peta-card-title{
   font-family: var(--font-mono); font-size:.78rem; letter-spacing:.06em; text-transform:uppercase;
   color: var(--color-primary-dark); font-weight:600; margin-bottom:10px;
@@ -359,11 +359,6 @@ h2{ font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--color-primary-dark); }
   opacity:0; transition: opacity .2s ease;
 }
 .peta-thumb:hover .peta-thumb-overlay, .peta-thumb:focus-visible .peta-thumb-overlay{ opacity:1; }
-.peta-gmap-wrap{
-  position:relative; border-radius: var(--radius-l); overflow:hidden; border:1px solid var(--color-line);
-  aspect-ratio: 4/3;
-}
-.peta-gmap-wrap iframe{ width:100%; height:100%; border:0; display:block; }
 .peta-card-desc{ margin-top:12px; font-size:.9rem; color: var(--color-muted); }
 
 /* ---------- Modal preview peta: zoom + unduh ---------- */
@@ -465,7 +460,6 @@ h2{ font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--color-primary-dark); }
   .kades-photo{ max-width:180px; }
   .kontak-grid{ grid-template-columns: 1fr; }
   .geo-grid{ grid-template-columns: 1fr; }
-  .peta-grid{ grid-template-columns: 1fr; }
 }
 @media (max-width: 760px){
   .main-nav{
