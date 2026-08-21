@@ -208,12 +208,12 @@ const CONTENT = {
   ],
 
   // ---------- GALERI DESA ----------
-  // kategori: "kegiatan" | "fasilitas" | "wisata"
+  // kategori: "kegiatan" | "fasilitas"
   //
   // CARA MENAMBAH FOTO — 2 CARA, BOLEH DICAMPUR BEBAS:
   //
   // (A) FOLDER LOKAL — foto ikut dikirim bareng file website ini.
-  //     1. Taruh file foto ke folder images/fasilitas/ atau images/wisata/
+  //     1. Taruh file foto ke folder images/fasilitas/
   //        (folder sudah disiapkan, masih kosong).
   //     2. Tambahkan satu baris baru di array "galeri" di bawah, contoh:
   //        { kategori: "fasilitas", judul: "Kantor Desa", foto: "images/fasilitas/kantor-desa.jpg" },
@@ -226,7 +226,7 @@ const CONTENT = {
   //        https://drive.google.com/file/d/1AbCdeFGhIJkLmNoPQRstuVWxyz/view
   //                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^ ini ID-nya
   //     4. Tambahkan baris baru, tempel ID ke driveImg(...), contoh:
-  //        { kategori: "wisata", judul: "Air Terjun Contoh", foto: driveImg("1AbCdeFGhIJkLmNoPQRstuVWxyz") },
+  //        { kategori: "fasilitas", judul: "Puskesmas Desa", foto: driveImg("1AbCdeFGhIJkLmNoPQRstuVWxyz") },
   //
   //  Jadi yang perlu disiapkan untuk cara Drive: cuma ID file-nya saja
   //  (bukan link lengkap), dan pastikan akses share-nya "Siapa saja yang punya link".
@@ -234,7 +234,7 @@ const CONTENT = {
   // Kegiatan (di bawah): 56 foto. Yang sudah punya ID Drive (lihat
   // idKegiatanDrive di atas) otomatis diambil dari Drive; sisanya yang
   // belum ada ID-nya otomatis pakai foto lokal di images/kegiatan/.
-  // Untuk Fasilitas & Wisata, tambahkan baris-baris baru mengikuti contoh
+  // Untuk Fasilitas, tambahkan baris-baris baru mengikuti contoh
   // di atas begitu fotonya sudah siap.
   galeri: [
     ...Array.from({ length: 56 }, (_, i) => ({
@@ -242,10 +242,6 @@ const CONTENT = {
       judul: `Kegiatan Desa ${i + 1}`,
       foto: driveImg(idKegiatanDrive[i], `images/kegiatan/kegiatan-${i + 1}.jpeg`),
     })),
-
-    // Contoh entri Wisata (hapus tanda // di depan baris saat fotonya
-    // sudah ada — lihat panduan di atas):
-    // { kategori: "wisata", judul: "Nama Tempat Wisata", foto: driveImg("ID_FILE_DRIVE_DISINI") },
 
     ...idFasilitasDrive.map((id, i) => ({
       kategori: "fasilitas",
