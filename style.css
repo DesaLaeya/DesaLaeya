@@ -236,6 +236,8 @@ h2{ font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--color-primary-dark); }
   background: var(--color-line); transform: translateX(-50%);
 }
 .org-row.first::before{ display:none; }
+.org-row-sub{ padding-top: 12px; }
+.org-row-sub::before{ display:none; }
 
 .org-group-label{
   font-family: var(--font-mono); font-size:.68rem; text-transform:uppercase; letter-spacing:.08em;

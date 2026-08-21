@@ -116,6 +116,7 @@ function setHeroPhoto(url) {
 
 function renderOrgTree(C) {
   const p = C.pemerintahan;
+  const w = C.wilayah;
   const tree = document.getElementById("orgTree");
 
   const node = (nama, jabatan, top = false) =>
@@ -123,6 +124,20 @@ function renderOrgTree(C) {
        <div class="org-name">${nama}</div>
        <div class="org-role">${jabatan}</div>
      </div>`;
+
+  // Render sekelompok orang jadi beberapa baris org-row, maksimal
+  // `size` kotak per baris. Baris pertama tampil normal (dengan garis
+  // penghubung ke atas); baris lanjutan (kalau ada) ditempel lebih
+  // rapat tanpa garis penghubung sendiri, meniru pola pada bagan resmi.
+  const orgRows = (items, size = 4) => {
+    let out = "";
+    for (let i = 0; i < items.length; i += size) {
+      const chunk = items.slice(i, i + size);
+      const cls = i === 0 ? "org-row" : "org-row org-row-sub";
+      out += `<div class="${cls}">${chunk.map(x => node(x.nama, x.jabatan)).join("")}</div>`;
+    }
+    return out;
+  };
 
   let html = "";
 
@@ -134,7 +149,15 @@ function renderOrgTree(C) {
 
   // Level 2: Kaur + Kasi
   html += `<div class="org-group-label">Kaur &amp; Kasi</div>`;
-  html += `<div class="org-row">${[...p.kaur, ...p.kasi].map(x => node(x.nama, x.jabatan)).join("")}</div>`;
+  html += orgRows([...p.kaur, ...p.kasi], 4);
+
+  // Level 3: Kepala Dusun
+  html += `<div class="org-group-label">Kepala Dusun</div>`;
+  html += orgRows(w.dusun.map(d => ({ nama: d.kepala, jabatan: d.nama })), 4);
+
+  // Level 4: Ketua RT — formasi 4 di baris atas, sisanya di baris bawah
+  html += `<div class="org-group-label">Ketua RT</div>`;
+  html += orgRows(w.rt.map(r => ({ nama: r.ketua, jabatan: r.nama })), 4);
 
   tree.innerHTML = html;
   fitOrgTree();
