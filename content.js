@@ -84,6 +84,17 @@ const idKegiatanDrive = [
     "14BnE-VAFDYgskOHXQ07R8kXz5W4aQwlu",
 ];
 
+// ID Google Drive untuk foto Fasilitas.
+const idFasilitasDrive = [
+    "10ybC6FcQmCaNDqRJm3LnomAz6sK3iA3b",
+    "1Bj6sQ_dPGQmdDvQvrGUTYnwl7tU5YD0h",
+    "1sCrRhs9FljCGi2FGk0mXnKg0Z87LVFSt",
+    "1nVPUDLYuOEOW31VNYMVbezFPAn79DY9d",
+    "1d1rjxmXYEFfJ1ByrMlEfbMApYm2yaJjQ",
+    "1E0UT3DdTwDkGZQl4bkDyFumrMsoKnx9J",
+    "1algq9Ic0v_xUGG4prJy60QDVpvvhOIsB",
+];
+
 const CONTENT = {
 
   // ---------- IDENTITAS DESA ----------
@@ -223,10 +234,15 @@ const CONTENT = {
       foto: driveImg(idKegiatanDrive[i], `images/kegiatan/kegiatan-${i + 1}.jpeg`),
     })),
 
-    // Contoh entri Fasilitas & Wisata (hapus tanda // di depan baris
-    // saat fotonya sudah ada — lihat panduan di atas):
-    // { kategori: "fasilitas", judul: "Kantor Desa", foto: "images/fasilitas/kantor-desa.jpg" },
+    // Contoh entri Wisata (hapus tanda // di depan baris saat fotonya
+    // sudah ada — lihat panduan di atas):
     // { kategori: "wisata", judul: "Nama Tempat Wisata", foto: driveImg("ID_FILE_DRIVE_DISINI") },
+
+    ...idFasilitasDrive.map((id, i) => ({
+      kategori: "fasilitas",
+      judul: `Fasilitas Desa ${i + 1}`,
+      foto: driveImg(id),
+    })),
   ],
 
   // ---------- KONTAK ----------

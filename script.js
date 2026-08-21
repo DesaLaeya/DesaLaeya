@@ -158,13 +158,23 @@ function renderStats(s) {
 function renderGaleri(items) {
   const grid = document.getElementById("galeriGrid");
   const empty = document.getElementById("galeriEmpty");
+  const pagination = document.getElementById("galeriPagination");
   const tabs = document.querySelectorAll("#galeriTabs .tab");
+  const PER_PAGE = 10;
+  let currentPage = 1;
 
-  function draw(filter) {
-    grid.innerHTML = "";
+  function draw(filter, page = 1) {
+    currentPage = page;
     const filtered = filter === "semua" ? items : items.filter(i => i.kategori === filter);
     empty.style.display = filtered.length ? "none" : "block";
-    filtered.forEach(item => {
+
+    const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+    if (currentPage > totalPages) currentPage = totalPages;
+    const start = (currentPage - 1) * PER_PAGE;
+    const pageItems = filtered.slice(start, start + PER_PAGE);
+
+    grid.innerHTML = "";
+    pageItems.forEach(item => {
       const el = document.createElement("div");
       el.className = "galeri-item";
       el.innerHTML = `<img src="${item.foto}" alt="${item.judul || ""}">
@@ -172,17 +182,39 @@ function renderGaleri(items) {
       el.addEventListener("click", () => openLightbox(item.foto, item.judul));
       grid.appendChild(el);
     });
+
+    drawPagination(filter, filtered.length, totalPages);
+  }
+
+  function drawPagination(filter, totalItems, totalPages) {
+    pagination.innerHTML = "";
+    if (totalItems <= PER_PAGE) return; // hanya muncul jika lebih dari 10 foto
+
+    const makeBtn = (label, page, opts = {}) => {
+      const b = document.createElement("button");
+      b.className = "page-btn" + (opts.active ? " active" : "");
+      b.textContent = label;
+      b.disabled = !!opts.disabled;
+      b.addEventListener("click", () => draw(filter, page));
+      return b;
+    };
+
+    pagination.appendChild(makeBtn("‹", currentPage - 1, { disabled: currentPage === 1 }));
+    for (let p = 1; p <= totalPages; p++) {
+      pagination.appendChild(makeBtn(String(p), p, { active: p === currentPage }));
+    }
+    pagination.appendChild(makeBtn("›", currentPage + 1, { disabled: currentPage === totalPages }));
   }
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       tabs.forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
-      draw(tab.dataset.filter);
+      draw(tab.dataset.filter, 1);
     });
   });
 
-  draw("semua");
+  draw("semua", 1);
 }
 
 function openLightbox(src, alt) {
