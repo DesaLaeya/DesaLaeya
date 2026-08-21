@@ -54,7 +54,6 @@ p{ margin:0 0 1em; color: var(--color-muted); }
 .section-alt{ background: var(--color-surface); max-width:none; }
 .section-alt > *{ max-width: var(--container); margin-left:auto; margin-right:auto; }
 .section-head{ margin-bottom: 48px; max-width: 640px; }
-.section-alt .section-head{ margin-left:0; margin-right:0; }
 .eyebrow{
   font-family: var(--font-mono);
   font-size: .78rem;
@@ -302,6 +301,37 @@ h2{ font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--color-primary-dark); }
   position:absolute; top:24px; right:24px; background:none; border:1.5px solid rgba(255,255,255,.4);
   color:#fff; width:40px; height:40px; border-radius:50%; cursor:pointer; font-size:1rem;
 }
+
+/* ---------- Misi "baca selengkapnya" + modal ---------- */
+.misi-list.clamped{
+  max-height: 168px; overflow:hidden; position:relative;
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+}
+.btn-readmore{
+  margin-top: 14px; background:none; border:none; padding:0; cursor:pointer;
+  font-family: var(--font-body); font-weight:600; font-size:.92rem;
+  color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px;
+}
+.btn-readmore:hover{ color: var(--color-primary-dark); }
+
+.modal{
+  position:fixed; inset:0; background: rgba(15,20,18,.55); z-index:100;
+  display:none; align-items:center; justify-content:center; padding: 24px;
+}
+.modal.open{ display:flex; }
+.modal-panel{
+  position:relative; background: var(--color-surface); border-radius: var(--radius-l);
+  max-width: 640px; width:100%; max-height: 82vh; overflow-y:auto;
+  padding: 40px 32px 32px;
+}
+.modal-panel h3{ color: var(--color-primary-dark); margin-top: 1em; }
+.modal-panel h3:first-of-type{ margin-top: .2em; }
+.modal-close{
+  position:absolute; top:18px; right:18px; background: var(--color-bg); border:1.5px solid var(--color-line);
+  color: var(--color-ink); width:38px; height:38px; border-radius:50%; cursor:pointer; font-size:1rem;
+}
+.modal-close:hover{ border-color: var(--color-primary); color: var(--color-primary); }
 
 /* ==========================================================
    KONTAK

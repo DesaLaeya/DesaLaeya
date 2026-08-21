@@ -21,6 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
     misiList.appendChild(li);
   });
 
+  // Modal "Baca Selengkapnya" Visi & Misi
+  document.getElementById("modalVisi").textContent = C.profil.visi;
+  const modalMisiList = document.getElementById("modalMisi");
+  C.profil.misi.forEach(m => {
+    const li = document.createElement("li");
+    li.textContent = m;
+    modalMisiList.appendChild(li);
+  });
+  initVisiMisiModal();
+
   const dusunGrid = document.getElementById("dusunGrid");
   C.wilayah.dusun.forEach(d => {
     dusunGrid.innerHTML += `
@@ -187,6 +197,22 @@ document.getElementById("lightboxClose")?.addEventListener("click", () => {
 document.getElementById("lightbox")?.addEventListener("click", (e) => {
   if (e.target.id === "lightbox") e.target.classList.remove("open");
 });
+
+/* ---------- Modal Visi & Misi (baca selengkapnya) ---------- */
+function initVisiMisiModal() {
+  const modal = document.getElementById("visiMisiModal");
+  const openBtn = document.getElementById("btnVisiMisiMore");
+  const closeBtn = document.getElementById("visiMisiModalClose");
+
+  openBtn?.addEventListener("click", () => modal.classList.add("open"));
+  closeBtn?.addEventListener("click", () => modal.classList.remove("open"));
+  modal?.addEventListener("click", (e) => {
+    if (e.target.id === "visiMisiModal") modal.classList.remove("open");
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") modal?.classList.remove("open");
+  });
+}
 
 /* ---------- Nav toggle (mobile) ---------- */
 function initNav() {

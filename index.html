@@ -124,7 +124,8 @@
       </article>
       <article class="card">
         <h3>Misi</h3>
-        <ul id="listMisi" class="misi-list"></ul>
+        <ul id="listMisi" class="misi-list clamped"></ul>
+        <button class="btn-readmore" id="btnVisiMisiMore" type="button">Baca Selengkapnya</button>
       </article>
     </div>
 
@@ -262,6 +263,18 @@
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose" aria-label="Tutup">✕</button>
   <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- modal for Visi & Misi (baca selengkapnya) -->
+<div class="modal" id="visiMisiModal">
+  <div class="modal-panel">
+    <button class="modal-close" id="visiMisiModalClose" aria-label="Tutup">✕</button>
+    <p class="eyebrow">Profil Desa</p>
+    <h3>Visi</h3>
+    <p id="modalVisi"></p>
+    <h3>Misi</h3>
+    <ul id="modalMisi" class="misi-list"></ul>
+  </div>
 </div>
 
 <script src="content.js"></script>
