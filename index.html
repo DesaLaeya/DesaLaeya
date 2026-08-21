@@ -118,7 +118,8 @@
     <div class="profil-grid">
       <article class="card">
         <h3>Sejarah Singkat</h3>
-        <p id="txtSejarah"></p>
+        <div id="txtSejarah" class="clamped"></div>
+        <button class="btn-readmore" id="btnSejarahMore" type="button">Baca Selengkapnya</button>
       </article>
       <article class="card">
         <h3>Visi</h3>
@@ -129,11 +130,6 @@
         <ul id="listMisi" class="misi-list clamped"></ul>
         <button class="btn-readmore" id="btnVisiMisiMore" type="button">Baca Selengkapnya</button>
       </article>
-    </div>
-
-    <div class="dusun-block">
-      <h3>Dusun &amp; RT</h3>
-      <div class="dusun-grid" id="dusunGrid"></div>
     </div>
   </section>
 
@@ -309,6 +305,8 @@
   <div class="modal-panel">
     <button class="modal-close" id="visiMisiModalClose" aria-label="Tutup">✕</button>
     <p class="eyebrow">Profil Desa</p>
+    <h3>Sejarah Singkat</h3>
+    <div id="modalSejarah"></div>
     <h3>Visi</h3>
     <p id="modalVisi"></p>
     <h3>Misi</h3>

@@ -117,8 +117,18 @@ const CONTENT = {
 
   // ---------- PROFIL DESA ----------
   profil: {
-    sejarah:
-      "Sejarah singkat Desa Laeya belum dilengkapi. Bagian ini dapat diisi dengan asal-usul nama desa, tokoh pendiri, dan perkembangan wilayah dari masa ke masa. Edit teks ini pada file content.js.",
+    // Sejarah ditulis sebagai array paragraf (satu paragraf = satu string)
+    // supaya bisa ditampilkan ringkas (clamped) di kartu dan lengkap di modal
+    // "Baca Selengkapnya", persis seperti perlakuan pada Misi.
+    sejarah: [
+      "Desa Laeya memiliki sejarah yang berawal dari keinginan masyarakat untuk memiliki wilayah pemerintahan yang lebih dekat dan mudah dijangkau. Pada masa itu, Desa Laeya masih menjadi bagian dari Desa Ambesea. Karena jarak yang cukup jauh dan masyarakat mengalami kesulitan dalam mengurus berbagai keperluan pemerintahan, muncul keinginan untuk membentuk desa sendiri.",
+      "Setelah melalui berbagai proses dan pengajuan kepada pemerintah, pada tahun 1978 pemisahan tersebut akhirnya disetujui. Sejak saat itu, wilayah ini mulai berdiri sebagai desa sendiri, dengan Bapak Imran sebagai kepala desa pertama.",
+      "Nama Laeya sendiri memiliki cerita yang cukup unik. Pada awal pembentukan, terdapat wilayah Ambalodangge yang juga memiliki keinginan untuk berdiri sendiri. Karena nama Ambalodangge sudah digunakan oleh masyarakat setempat, nama Laeya kemudian ditetapkan untuk wilayah ini. Nama tersebut kemudian menjadi identitas desa yang terus digunakan hingga sekarang.",
+      "Seiring berjalannya waktu, Desa Laeya terus berkembang dan mengalami perubahan serta pemekaran wilayah. Salah satunya adalah wilayah Angero Boti yang dahulu masih menjadi bagian dari wilayah Desa Laeya.",
+      "Kini, Desa Laeya terus tumbuh bersama masyarakatnya. Selain kehidupan sosial dan pemerintahan desa, sektor pertanian menjadi salah satu bagian penting dalam kehidupan masyarakat. Sawit, padi, dan jagung menjadi beberapa potensi utama yang berkembang di wilayah Desa Laeya.",
+      "Dari sebuah wilayah yang dahulu berjuang untuk berdiri sendiri, Desa Laeya terus tumbuh menjadi desa yang memiliki cerita, potensi, dan harapan untuk masa depan.",
+      "Laeya bukan hanya sebuah nama, tetapi bagian dari perjalanan dan perjuangan masyarakat yang terus dijaga hingga hari ini.",
+    ],
     visi:
       "Siap Melayani, Mengutamakan Masyarakat dan Terwujudnya Masyarakat Desa yang Maju, Adil, Mandiri, dan Aman.",
     misi: [
@@ -159,7 +169,7 @@ const CONTENT = {
       nama: "Musahir",
       jabatan: "Kepala Desa",
       sambutan:
-        "Selamat datang di website resmi Desa Laeya. Semoga kehadiran website ini dapat mempermudah masyarakat dan pengunjung dalam memperoleh informasi seputar pemerintahan, pembangunan, dan potensi desa kami. Mari bersama-sama membangun Desa Laeya yang lebih maju dan sejahtera.",
+        "Website ini kami buat supaya masyarakat Desa Laeya bisa lebih mudah mendapatkan berbagai informasi tentang desa kita, mulai dari kegiatan, pelayanan, pembangunan, sampai potensi yang ada di Desa Laeya. Kami berharap dengan adanya website ini, masyarakat tidak perlu kesulitan mencari informasi dan bisa lebih dekat dengan pemerintah desa. Apa pun informasi dan kegiatan yang ada, sebisa mungkin akan kami bagikan melalui website ini. Mari kita sama-sama menjaga dan membangun Desa Laeya agar semakin maju, nyaman, dan menjadi tempat yang baik untuk kita semua. Karena Desa Laeya adalah rumah kita bersama. Kita jaga bersama, kita bangun bersama, dan kita majukan bersama.",
       foto: "images/kepala-desa.jpeg",
     },
     sekretaris: { nama: "Anton", jabatan: "Sekretaris Desa" },

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setHeroPhoto(C.desa.fotoUtama);
 
   /* ---------- Profil Desa ---------- */
-  document.getElementById("txtSejarah").textContent = C.profil.sejarah;
+  renderParagraphs("txtSejarah", C.profil.sejarah);
   document.getElementById("txtVisi").textContent = C.profil.visi;
   const misiList = document.getElementById("listMisi");
   C.profil.misi.forEach(m => {
@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
     misiList.appendChild(li);
   });
 
-  // Modal "Baca Selengkapnya" Visi & Misi
+  // Modal "Baca Selengkapnya" Sejarah & Visi & Misi
+  renderParagraphs("modalSejarah", C.profil.sejarah);
   document.getElementById("modalVisi").textContent = C.profil.visi;
   const modalMisiList = document.getElementById("modalMisi");
   C.profil.misi.forEach(m => {
@@ -30,16 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     modalMisiList.appendChild(li);
   });
   initVisiMisiModal();
-
-  const dusunGrid = document.getElementById("dusunGrid");
-  C.wilayah.dusun.forEach(d => {
-    dusunGrid.innerHTML += `
-      <div class="dusun-card">
-        <p class="d-eyebrow">Kepala Dusun</p>
-        <h4>${d.nama}</h4>
-        <p>${d.kepala}</p>
-      </div>`;
-  });
 
   /* ---------- Pemerintahan ---------- */
   const kd = C.pemerintahan.kepalaDesa;
@@ -110,6 +101,20 @@ function photoOrPattern(url) {
     <rect width="400" height="250" fill="#DCEEE7"/>
     <path d="M0 180 Q100 150 200 180 T400 180 V250 H0 Z" fill="#287D66" opacity=".85"/>
   </svg>`;
+}
+
+// Render array teks panjang (mis. Sejarah) jadi beberapa elemen <p>
+// ke dalam sebuah wadah, dipakai baik untuk versi ringkas (clamped)
+// di kartu maupun versi lengkap di modal "Baca Selengkapnya".
+function renderParagraphs(elId, paragraphs) {
+  const wrap = document.getElementById(elId);
+  if (!wrap) return;
+  wrap.innerHTML = "";
+  (Array.isArray(paragraphs) ? paragraphs : [paragraphs]).forEach(p => {
+    const el = document.createElement("p");
+    el.textContent = p;
+    wrap.appendChild(el);
+  });
 }
 
 function setHeroPhoto(url) {
@@ -316,10 +321,13 @@ document.getElementById("lightbox")?.addEventListener("click", (e) => {
 /* ---------- Modal Visi & Misi (baca selengkapnya) ---------- */
 function initVisiMisiModal() {
   const modal = document.getElementById("visiMisiModal");
-  const openBtn = document.getElementById("btnVisiMisiMore");
+  const openBtns = [
+    document.getElementById("btnSejarahMore"),
+    document.getElementById("btnVisiMisiMore"),
+  ];
   const closeBtn = document.getElementById("visiMisiModalClose");
 
-  openBtn?.addEventListener("click", () => modal.classList.add("open"));
+  openBtns.forEach(btn => btn?.addEventListener("click", () => modal.classList.add("open")));
   closeBtn?.addEventListener("click", () => modal.classList.remove("open"));
   modal?.addEventListener("click", (e) => {
     if (e.target.id === "visiMisiModal") modal.classList.remove("open");
