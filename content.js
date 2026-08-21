@@ -184,8 +184,8 @@ const CONTENT = {
     jumlahKK: 437,
     jumlahDusun: 3,
     jumlahRT: 6,
-    luasWilayah: "Belum tersedia",
-    letakGeografis: "Belum tersedia",
+    luasWilayah: "114,20 Km²",
+    letakGeografis: "4°38' 82" Lintang Selatan dan 122°03' 9" Bujur Timur",
   },
 
   // ---------- POTENSI DESA ----------
