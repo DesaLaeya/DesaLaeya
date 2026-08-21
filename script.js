@@ -129,15 +129,48 @@ function renderOrgTree(C) {
   // Level 0: Kepala Desa
   html += `<div class="org-row first">${node(p.kepalaDesa.nama, p.kepalaDesa.jabatan, true)}</div>`;
 
-  // Level 1: Sekretaris + Bendahara
-  html += `<div class="org-row">${node(p.sekretaris.nama, p.sekretaris.jabatan)}${node(p.bendahara.nama, p.bendahara.jabatan)}</div>`;
+  // Level 1: Sekretaris
+  html += `<div class="org-row">${node(p.sekretaris.nama, p.sekretaris.jabatan)}</div>`;
 
   // Level 2: Kaur + Kasi
   html += `<div class="org-group-label">Kaur &amp; Kasi</div>`;
   html += `<div class="org-row">${[...p.kaur, ...p.kasi].map(x => node(x.nama, x.jabatan)).join("")}</div>`;
 
   tree.innerHTML = html;
+  fitOrgTree();
 }
+
+// Menyusutkan bagan (org chart) secara proporsional supaya selalu muat
+// dalam lebar layar tanpa perlu scroll horizontal, terutama di mobile.
+// Desktop tetap tampil skala 1:1 selama masih muat.
+function fitOrgTree() {
+  const wrap = document.querySelector(".org-tree-wrap");
+  const tree = document.getElementById("orgTree");
+  if (!wrap || !tree) return;
+
+  // reset dulu supaya ukuran asli (natural) terbaca dengan benar
+  tree.style.transform = "none";
+  wrap.style.height = "";
+
+  const naturalWidth = tree.scrollWidth;
+  const naturalHeight = tree.offsetHeight;
+  const available = wrap.clientWidth;
+
+  const scale = naturalWidth > available ? available / naturalWidth : 1;
+
+  tree.style.transformOrigin = "top center";
+  tree.style.transform = `scale(${scale})`;
+  // Tinggi wrapper disesuaikan supaya tidak menyisakan ruang kosong
+  // di bawah bagan yang sudah mengecil.
+  wrap.style.height = naturalHeight * scale + "px";
+}
+
+let _fitOrgTreeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(_fitOrgTreeTimeout);
+  _fitOrgTreeTimeout = setTimeout(fitOrgTree, 150);
+});
+window.addEventListener("orientationchange", () => setTimeout(fitOrgTree, 200));
 
 function renderStats(s) {
   const items = [

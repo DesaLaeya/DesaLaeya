@@ -163,7 +163,6 @@ const CONTENT = {
       foto: "images/kepala-desa.jpeg",
     },
     sekretaris: { nama: "Anton", jabatan: "Sekretaris Desa" },
-    bendahara: { nama: "Emon Zamorano", jabatan: "Bendahara Desa" },
     kaur: [
       { nama: "Aco Saharuddin", jabatan: "Kepala Urusan Umum" },
       { nama: "Emon Zamorano", jabatan: "Kepala Urusan Keuangan" },
