@@ -104,7 +104,7 @@ const CONTENT = {
     kecamatan: "Kecamatan Laeya",
     kabupaten: "Kabupaten Konawe Selatan",
     provinsi: "Provinsi Sulawesi Tenggara",
-    fotoUtama: "images/hero-image.png",
+    fotoUtama: "images/hero-image.webp",
   },
 
   // ---------- BERANDA ----------
@@ -194,7 +194,7 @@ const CONTENT = {
       judul: "Pertanian & Perkebunan",
       deskripsi:
         "Sektor pertanian dan perkebunan menjadi salah satu mata pencaharian utama warga Desa Laeya, meliputi tanaman pangan dan komoditas perkebunan unggulan.",
-      foto: "images/potensi-desa.png",
+      foto: "images/potensi-desa.webp",
     },
   ],
 

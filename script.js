@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("kadesSambutan").textContent = kd.sambutan;
   if (kd.foto) {
     document.getElementById("kadesPhoto").innerHTML =
-      `<img src="${kd.foto}" alt="Foto ${kd.nama}">`;
+      `<img src="${kd.foto}" alt="Foto ${kd.nama}" loading="lazy" decoding="async">`;
   }
   renderOrgTree(C);
 
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
    HELPERS
    ========================================================== */
 function photoOrPattern(url) {
-  if (url) return `<img src="${url}" alt="">`;
+  if (url) return `<img src="${url}" alt="" loading="lazy" decoding="async">`;
   return `<svg viewBox="0 0 400 250" width="100%" height="100%">
     <rect width="400" height="250" fill="#DCEEE7"/>
     <path d="M0 180 Q100 150 200 180 T400 180 V250 H0 Z" fill="#287D66" opacity=".85"/>
@@ -108,7 +108,9 @@ function photoOrPattern(url) {
 function setHeroPhoto(url) {
   if (!url) return; // biarkan pola SVG bawaan
   const wrap = document.getElementById("heroPhoto");
-  wrap.innerHTML = `<img src="${url}" alt="Foto utama desa" style="width:100%;height:100%;object-fit:cover;">
+  // Foto hero TIDAK di-lazy load — ini gambar pertama yang tampil (LCP),
+  // jadi harus langsung dimuat dengan prioritas tinggi.
+  wrap.innerHTML = `<img src="${url}" alt="Foto utama desa" style="width:100%;height:100%;object-fit:cover;" fetchpriority="high" decoding="async">
     <span class="photo-caption">Foto utama desa</span>`;
 }
 
@@ -177,7 +179,7 @@ function renderGaleri(items) {
     pageItems.forEach(item => {
       const el = document.createElement("div");
       el.className = "galeri-item";
-      el.innerHTML = `<img src="${item.foto}" alt="${item.judul || ""}">
+      el.innerHTML = `<img src="${item.foto}" alt="${item.judul || ""}" loading="lazy" decoding="async">
         <span class="galeri-tag">${item.kategori}</span>`;
       el.addEventListener("click", () => openLightbox(item.foto, item.judul));
       grid.appendChild(el);
