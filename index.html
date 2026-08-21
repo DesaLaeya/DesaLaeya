@@ -58,6 +58,7 @@
       <a href="#profil">Profil Desa</a>
       <a href="#pemerintahan">Pemerintahan</a>
       <a href="#statistik">Statistik</a>
+      <a href="#peta-desa">Peta Desa</a>
       <a href="#potensi">Potensi</a>
       <a href="#galeri">Galeri</a>
       <a href="#kontak" class="nav-cta">Hubungi Kami</a>
@@ -183,6 +184,35 @@
     </div>
   </section>
 
+  <!-- ================= PETA DESA ================= -->
+  <section class="section section-alt" id="peta-desa">
+    <div class="section-head">
+      <center>
+      <p class="eyebrow">Peta Desa</p>
+      <h2>Peta Wilayah &amp; Kerawanan Banjir Desa Laeya</h2>
+      </center>
+    </div>
+
+    <div class="peta-grid">
+      <div class="peta-card">
+        <p class="peta-card-title">Peta Kerawanan Banjir</p>
+        <button class="peta-thumb" id="petaBanjirThumb" type="button" aria-haspopup="dialog">
+          <img id="petaBanjirImg" src="images/peta-kerawanan-banjir-thumb.webp" alt="Peta Kerawanan Banjir Desa Laeya Kecamatan Laeya Kabupaten Konawe Selatan" loading="lazy" decoding="async">
+          <span class="peta-thumb-overlay">🔍 Perbesar Peta</span>
+        </button>
+        <p class="peta-card-desc">Peta hasil KKN Tematik Literasi Universitas Halu Oleo 2026, menampilkan tingkat kerawanan banjir per wilayah (rendah, sedang, tinggi). Klik gambar untuk memperbesar &amp; mengunduh.</p>
+      </div>
+
+      <div class="peta-card">
+        <p class="peta-card-title">Peta Lokasi (Google Maps)</p>
+        <div class="peta-gmap-wrap">
+          <iframe id="petaDesaGmapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Lokasi Desa Laeya pada Google Maps"></iframe>
+        </div>
+        <p class="peta-card-desc">Lokasi Desa Laeya, Kecamatan Laeya, Kabupaten Konawe Selatan pada Google Maps.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= POTENSI DESA ================= -->
   <section class="section section-alt" id="potensi">
     <div class="section-head">
@@ -258,6 +288,7 @@
       <a href="#beranda">Beranda</a>
       <a href="#profil">Profil Desa</a>
       <a href="#pemerintahan">Pemerintahan</a>
+      <a href="#peta-desa">Peta Desa</a>
       <a href="#galeri">Galeri</a>
       <a href="#kontak">Kontak</a>
     </nav>
@@ -282,6 +313,29 @@
     <p id="modalVisi"></p>
     <h3>Misi</h3>
     <ul id="modalMisi" class="misi-list"></ul>
+  </div>
+</div>
+
+<!-- modal preview peta (zoom + unduh) -->
+<div class="modal img-modal" id="petaBanjirModal" role="dialog" aria-modal="true" aria-label="Preview Peta Kerawanan Banjir">
+  <div class="modal-panel img-modal-panel">
+    <div class="img-modal-toolbar">
+      <span class="img-modal-title">Peta Kerawanan Banjir Desa Laeya</span>
+      <div class="img-zoom-controls">
+        <button type="button" id="petaZoomOut" aria-label="Perkecil peta">−</button>
+        <span id="petaZoomLevel">100%</span>
+        <button type="button" id="petaZoomIn" aria-label="Perbesar peta">+</button>
+        <button type="button" id="petaZoomReset" class="img-zoom-reset" aria-label="Atur ulang zoom">Reset</button>
+      </div>
+      <div class="img-modal-actions">
+        <a id="petaDownloadBtn" class="btn btn-primary" download="peta-kerawanan-banjir-desa-laeya.webp">⬇ Unduh Peta</a>
+        <button class="modal-close" id="petaBanjirModalClose" aria-label="Tutup">✕</button>
+      </div>
+    </div>
+    <div class="img-modal-viewport" id="petaModalViewport">
+      <img id="petaModalImg" src="" alt="Peta Kerawanan Banjir Desa Laeya" draggable="false">
+    </div>
+    <p class="img-modal-hint">Scroll / pinch untuk zoom, seret untuk geser saat diperbesar.</p>
   </div>
 </div>
 

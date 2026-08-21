@@ -72,6 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- Galeri ---------- */
   renderGaleri(C.galeri);
 
+  /* ---------- Peta Desa ---------- */
+  const pd = C.petaDesa;
+  document.getElementById("petaBanjirImg").src = pd.kerawananBanjirThumb;
+  document.getElementById("petaDesaGmapFrame").src = pd.googleMapsEmbedSrc;
+  document.getElementById("petaDownloadBtn").href = pd.kerawananBanjirFull;
+  initPetaBanjirModal(pd.kerawananBanjirFull);
+
   /* ---------- Kontak ---------- */
   const k = C.kontak;
   document.getElementById("txtAlamat").textContent = k.alamat;
@@ -320,6 +327,121 @@ function initVisiMisiModal() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") modal?.classList.remove("open");
   });
+}
+
+/* ---------- Modal Preview Peta (zoom + unduh) ---------- */
+function initPetaBanjirModal(fullSrc) {
+  const modal = document.getElementById("petaBanjirModal");
+  const openBtn = document.getElementById("petaBanjirThumb");
+  const closeBtn = document.getElementById("petaBanjirModalClose");
+  const viewport = document.getElementById("petaModalViewport");
+  const img = document.getElementById("petaModalImg");
+  const zoomInBtn = document.getElementById("petaZoomIn");
+  const zoomOutBtn = document.getElementById("petaZoomOut");
+  const zoomResetBtn = document.getElementById("petaZoomReset");
+  const zoomLabel = document.getElementById("petaZoomLevel");
+  if (!modal || !openBtn) return;
+
+  const MIN_SCALE = 1, MAX_SCALE = 4, STEP = 0.5;
+  let scale = 1, tx = 0, ty = 0;
+  let dragging = false, startX = 0, startY = 0, startTx = 0, startTy = 0;
+
+  function apply() {
+    img.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+    img.style.cursor = scale > 1 ? (dragging ? "grabbing" : "grab") : "zoom-in";
+    zoomLabel.textContent = Math.round(scale * 100) + "%";
+  }
+
+  function clampPan() {
+    // biarkan bebas sedikit, browser tidak akan sampai keluar jauh
+    // karena viewport overflow:hidden — cukup batasi kasar biar tidak lari terlalu jauh.
+    const bound = 400 * scale;
+    tx = Math.max(-bound, Math.min(bound, tx));
+    ty = Math.max(-bound, Math.min(bound, ty));
+  }
+
+  function setScale(next) {
+    scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, next));
+    if (scale === MIN_SCALE) { tx = 0; ty = 0; }
+    clampPan();
+    apply();
+  }
+
+  function reset() { scale = 1; tx = 0; ty = 0; apply(); }
+
+  function open() {
+    img.src = fullSrc;
+    reset();
+    modal.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+  function close() {
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  openBtn.addEventListener("click", open);
+  closeBtn?.addEventListener("click", close);
+  modal.addEventListener("click", (e) => { if (e.target.id === "petaBanjirModal") close(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && modal.classList.contains("open")) close(); });
+
+  zoomInBtn?.addEventListener("click", () => setScale(scale + STEP));
+  zoomOutBtn?.addEventListener("click", () => setScale(scale - STEP));
+  zoomResetBtn?.addEventListener("click", reset);
+
+  // klik pada gambar: zoom in kalau masih 1x, zoom out kalau sudah diperbesar
+  img.addEventListener("click", () => setScale(scale > 1 ? 1 : 2));
+
+  // scroll wheel untuk zoom
+  viewport.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    setScale(scale + (e.deltaY < 0 ? STEP : -STEP));
+  }, { passive: false });
+
+  // drag untuk geser saat diperbesar (mouse)
+  img.addEventListener("mousedown", (e) => {
+    if (scale <= 1) return;
+    dragging = true; startX = e.clientX; startY = e.clientY; startTx = tx; startTy = ty;
+    e.preventDefault();
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (!dragging) return;
+    tx = startTx + (e.clientX - startX);
+    ty = startTy + (e.clientY - startY);
+    clampPan();
+    apply();
+  });
+  window.addEventListener("mouseup", () => { dragging = false; apply(); });
+
+  // pinch-to-zoom & geser sentuh (mobile)
+  let touchStartDist = 0, touchStartScale = 1, touchPanning = false, tsx = 0, tsy = 0, tstx = 0, tsty = 0;
+  viewport.addEventListener("touchstart", (e) => {
+    if (e.touches.length === 2) {
+      touchStartDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      touchStartScale = scale;
+    } else if (e.touches.length === 1 && scale > 1) {
+      touchPanning = true;
+      tsx = e.touches[0].clientX; tsy = e.touches[0].clientY; tstx = tx; tsty = ty;
+    }
+  }, { passive: true });
+  viewport.addEventListener("touchmove", (e) => {
+    if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      setScale(touchStartScale * (dist / touchStartDist));
+    } else if (e.touches.length === 1 && touchPanning) {
+      tx = tstx + (e.touches[0].clientX - tsx);
+      ty = tsty + (e.touches[0].clientY - tsy);
+      clampPan();
+      apply();
+    }
+  }, { passive: true });
+  viewport.addEventListener("touchend", () => { touchPanning = false; });
 }
 
 /* ---------- Nav toggle (mobile) ---------- */

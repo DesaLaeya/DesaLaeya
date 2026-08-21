@@ -244,6 +244,19 @@ const CONTENT = {
     })),
   ],
 
+  // ---------- PETA DESA ----------
+  petaDesa: {
+    // Gambar peta kerawanan banjir. Versi "-thumb" (kecil, ringan) dipakai
+    // untuk tampilan di halaman; versi penuh dipakai saat di-zoom/di-unduh.
+    kerawananBanjirThumb: "images/peta-kerawanan-banjir-thumb.webp",
+    kerawananBanjirFull: "images/peta-kerawanan-banjir.webp",
+    // Sumber: KKN Tematik Literasi Universitas Halu Oleo 2026.
+    // Src iframe Google Maps untuk peta lokasi desa (boleh disamakan atau
+    // dibedakan dari googleMapsEmbedSrc di bagian Kontak di bawah).
+    googleMapsEmbedSrc:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3978.2859221812587!2d122.47611387559732!3d-4.3573811353660705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2da27b60b5bf086b%3A0xf24a66b6a2f93e05!2sBalai%20Desa%20Laeya!5e0!3m2!1sid!2sid!4v1787283955533!5m2!1sid!2sid",
+  },
+
   // ---------- KONTAK ----------
   kontak: {
     alamat:
