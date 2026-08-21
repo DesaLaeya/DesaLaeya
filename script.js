@@ -156,6 +156,14 @@ function fitOrgTree() {
   const naturalHeight = tree.offsetHeight;
   const available = wrap.clientWidth;
 
+  // Kalau lebar wadah belum siap dibaca (mis. layout belum settle saat
+  // pertama kali dipanggil), jangan set scale 0 — coba lagi sebentar lagi
+  // daripada bikin bagan hilang total.
+  if (!available || !naturalWidth) {
+    requestAnimationFrame(fitOrgTree);
+    return;
+  }
+
   const scale = naturalWidth > available ? available / naturalWidth : 1;
 
   tree.style.transformOrigin = "top center";
@@ -171,6 +179,16 @@ window.addEventListener("resize", () => {
   _fitOrgTreeTimeout = setTimeout(fitOrgTree, 150);
 });
 window.addEventListener("orientationchange", () => setTimeout(fitOrgTree, 200));
+
+// Font web (Google Fonts) dimuat async dan bisa "swap" setelah render
+// pertama, sedikit mengubah lebar tiap kotak nama/jabatan. Hitung ulang
+// skala begitu font benar-benar siap, dan sekali lagi setelah semua
+// resource halaman (termasuk gambar) selesai dimuat, supaya bagan tidak
+// terpotong di desktop maupun hilang di mobile.
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(fitOrgTree).catch(() => {});
+}
+window.addEventListener("load", () => setTimeout(fitOrgTree, 100));
 
 function renderStats(s) {
   const items = [
