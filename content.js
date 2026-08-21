@@ -185,7 +185,7 @@ const CONTENT = {
     jumlahDusun: 3,
     jumlahRT: 6,
     luasWilayah: "114,20 Km²",
-    letakGeografis: "4°38' 82" Lintang Selatan dan 122°03' 9" Bujur Timur",
+    letakGeografis: `4°38' 82" Lintang Selatan dan 122°03' 9" Bujur Timur`,
   },
 
   // ---------- POTENSI DESA ----------
