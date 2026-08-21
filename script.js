@@ -124,14 +124,6 @@ function renderOrgTree(C) {
   html += `<div class="org-group-label">Kaur &amp; Kasi</div>`;
   html += `<div class="org-row">${[...p.kaur, ...p.kasi].map(x => node(x.nama, x.jabatan)).join("")}</div>`;
 
-  // Level 3: Kepala Dusun
-  html += `<div class="org-group-label">Kepala Dusun</div>`;
-  html += `<div class="org-row">${C.wilayah.dusun.map(d => node(d.kepala, d.nama)).join("")}</div>`;
-
-  // Level 4: RT
-  html += `<div class="org-group-label">Ketua RT</div>`;
-  html += `<div class="org-row">${C.wilayah.rt.map(r => node(r.ketua, r.nama)).join("")}</div>`;
-
   tree.innerHTML = html;
 }
 
