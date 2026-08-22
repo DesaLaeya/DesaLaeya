@@ -168,8 +168,12 @@ const CONTENT = {
     kepalaDesa: {
       nama: "Musair",
       jabatan: "Kepala Desa",
-      sambutan:
-        "Selamat datang di Website Resmi Pemerintah Desa Laeya Kecamatan Laeya Kabupaten Konawe Selatan. Website ini hadir dengan harapan masyarakat Desa Laeya bisa lebih mudah mendapatkan berbagai informasi tentang desa, mulai dari kegiatan, pelayanan, pembangunan, sampai potensi yang ada di Desa Laeya. Dengan adanya website ini, masyarakat tidak perlu kesulitan mencari informasi dan bisa lebih dekat dengan pemerintah desa. Apa pun informasi dan kegiatan yang ada, sebisa mungkin akan dibagikan melalui website ini. Mari kita sama-sama menjaga dan membangun Desa Laeya agar semakin maju, nyaman, dan menjadi tempat yang baik untuk kita semua. Karena Desa Laeya adalah rumah kita bersama. Kita jaga bersama, kita bangun bersama, dan kita majukan bersama.",
+      sambutan: [
+        "Selamat datang di Website Resmi Pemerintah Desa Laeya Kecamatan Laeya Kabupaten Konawe Selatan.",
+        "Website ini hadir dengan harapan masyarakat Desa Laeya bisa lebih mudah mendapatkan berbagai informasi tentang desa, mulai dari kegiatan, pelayanan, pembangunan, sampai potensi yang ada di Desa Laeya.",
+        "Dengan adanya website ini, masyarakat tidak perlu kesulitan mencari informasi dan bisa lebih dekat dengan pemerintah desa. Apa pun informasi dan kegiatan yang ada, sebisa mungkin akan dibagikan melalui website ini.",
+        "Mari kita sama-sama menjaga dan membangun Desa Laeya agar semakin maju, nyaman, dan menjadi tempat yang baik untuk kita semua. Karena Desa Laeya adalah rumah kita bersama. Kita jaga bersama, kita bangun bersama, dan kita majukan bersama.",
+      ],
       foto: "images/kepala-desa.jpeg",
     },
     sekretaris: { nama: "Anton", jabatan: "Sekretaris Desa" },

@@ -446,6 +446,10 @@ h2{ font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--color-primary-dark); }
   border-top: 1px solid rgba(255,255,255,.12); text-align:center;
   padding: 18px 24px; font-size:.8rem; color: rgba(255,255,255,.55);
 }
+.footer-bottom a{ color: rgba(255,255,255,.75); }
+.footer-bottom a:hover{ color:#fff; }
+.kades-sambutan p{ margin-bottom: 14px; }
+.kades-sambutan p:last-child{ margin-bottom: 0; }
 
 /* ==========================================================
    RESPONSIVE

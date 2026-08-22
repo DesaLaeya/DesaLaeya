@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- Pemerintahan ---------- */
   const kd = C.pemerintahan.kepalaDesa;
   document.getElementById("kadesNama").textContent = `${kd.nama} — ${kd.jabatan}`;
-  document.getElementById("kadesSambutan").textContent = kd.sambutan;
+  renderParagraphs("kadesSambutan", kd.sambutan);
   if (kd.foto) {
     document.getElementById("kadesPhoto").innerHTML =
       `<img src="${kd.foto}" alt="Foto ${kd.nama}" loading="lazy" decoding="async">`;
