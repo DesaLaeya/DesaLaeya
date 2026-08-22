@@ -100,7 +100,7 @@ const CONTENT = {
   // ---------- IDENTITAS DESA ----------
   desa: {
     nama: "Desa Laeya",
-    slogan: "Bersama Membangun Desa yang Maju, Mandiri, dan Sejahtera",
+    slogan: "Laeya Bersinergi, Desa Berdaya, Masyarakat Sejahtera, Laeya Istimewa!",
     kecamatan: "Kecamatan Laeya",
     kabupaten: "Kabupaten Konawe Selatan",
     provinsi: "Provinsi Sulawesi Tenggara",
@@ -166,10 +166,10 @@ const CONTENT = {
   // ---------- PEMERINTAHAN DESA ----------
   pemerintahan: {
     kepalaDesa: {
-      nama: "Musahir",
+      nama: "Musair",
       jabatan: "Kepala Desa",
       sambutan:
-        "Website ini kami buat supaya masyarakat Desa Laeya bisa lebih mudah mendapatkan berbagai informasi tentang desa kita, mulai dari kegiatan, pelayanan, pembangunan, sampai potensi yang ada di Desa Laeya. Kami berharap dengan adanya website ini, masyarakat tidak perlu kesulitan mencari informasi dan bisa lebih dekat dengan pemerintah desa. Apa pun informasi dan kegiatan yang ada, sebisa mungkin akan kami bagikan melalui website ini. Mari kita sama-sama menjaga dan membangun Desa Laeya agar semakin maju, nyaman, dan menjadi tempat yang baik untuk kita semua. Karena Desa Laeya adalah rumah kita bersama. Kita jaga bersama, kita bangun bersama, dan kita majukan bersama.",
+        "Selamat datang di Website Resmi Pemerintah Desa Laeya Kecamatan Laeya Kabupaten Konawe Selatan. Website ini hadir dengan harapan masyarakat Desa Laeya bisa lebih mudah mendapatkan berbagai informasi tentang desa, mulai dari kegiatan, pelayanan, pembangunan, sampai potensi yang ada di Desa Laeya. Dengan adanya website ini, masyarakat tidak perlu kesulitan mencari informasi dan bisa lebih dekat dengan pemerintah desa. Apa pun informasi dan kegiatan yang ada, sebisa mungkin akan dibagikan melalui website ini. Mari kita sama-sama menjaga dan membangun Desa Laeya agar semakin maju, nyaman, dan menjadi tempat yang baik untuk kita semua. Karena Desa Laeya adalah rumah kita bersama. Kita jaga bersama, kita bangun bersama, dan kita majukan bersama.",
       foto: "images/kepala-desa.jpeg",
     },
     sekretaris: { nama: "Anton", jabatan: "Sekretaris Desa" },
